@@ -10,7 +10,7 @@ public class Meta {
     {
       
     }
-    public void configure(String [] splitCommand)
+    public void configure(String [] splitCommands)
     {
       String log="";
       String dot="";
