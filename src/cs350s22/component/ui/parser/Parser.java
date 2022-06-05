@@ -17,7 +17,7 @@ public class Parser {
 
     public void parse() throws IOException {
 
-        String[] splitCommands = command.toUpperCase().split(" ");
+        String[] splitCommands = command.toLowerCase().split(" ");
 
         boolean metaCommand = false;
         if (splitCommands[0].charAt(0) == '@') {
@@ -51,9 +51,9 @@ public class Parser {
                 case "REPORTER":
                     ReporterParser.reporterCommand(parserHelper,splitCommands);
                     break;
-                case "SENSOR":
-                    SensorParser.sensorCommand(parserHelper,splitCommands);
-                    break;
+//                case "SENSOR":
+//                    SensorParser.sensorCommand(parserHelper,splitCommands);
+//                    break;
                 case "WATCHDOG":
                     WatchdogParser.watchdogCommand(parserHelper,splitCommands);
                     break;
