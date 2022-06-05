@@ -31,16 +31,33 @@ public class Parser {
             String type = splitCommands[1].toUpperCase();
             switch (type) {
                 case "ACTUATOR":
-                    // ActuatorParser.actuatorCommand(parserHelper, splitCommands);
-                    // case "CONTROLLER", "DEPENDENCY" ->
-                    // ParseController.parseControllerCommand(parserHelper, input);
-                    // case "MAPPER" -> ParseMapper.parseMapperCommand(parserHelper, input);
-                    // case "MESSAGE" -> ParseMessage.parseMessageCommand(parserHelper, input);
-                    // case "NETWORK" -> ParseNetwork.parseNetworkCommand(parserHelper, input);
-                    // case "REPORTER" -> ParseReporter.parseReporterCommand(parserHelper, input);
-                    // case "SENSOR" -> ParseSensor.parseSensorCommand(parserHelper, input);
-                    // case "WATCHDOG" -> ParseWatchdog.parseWatchdogCommand(parserHelper, input);
-                    // default -> System.out.println("Invalid command");
+                    ActuatorParser.actuatorCommand(parserHelper, splitCommands);
+                    break;
+                case "CONTROLLER":
+                    ControllerParser.controllerCommand(parserHelper, splitCommands);
+                    break;
+                case "DEPENDENCY":
+                    DependencyParser.dependencyCommand(parserHelper, splitCommands);
+                    break;
+                case "MAPPER":
+                    MapperParser.mapperCommand(parserHelper, splitCommands);
+                    break;
+                case "MESSAGE":
+                    MessageParser.messageCommand(parserHelper,splitCommands);
+                    break;
+                case "NETWORK":
+                    NetworkParser.networkCommand(parserHelper,splitCommands);
+                    break;
+                case "REPORTER":
+                    ReporterParser.reporterCommand(parserHelper,splitCommands);
+                    break;
+                case "SENSOR":
+                    SensorParser.sensorCommand(parserHelper,splitCommands);
+                    break;
+                case "WATCHDOG":
+                    WatchdogParser.watchdogCommand(parserHelper,splitCommands);
+                    break;
+                default: System.out.println("Invalid command");
             }
         }
         //
