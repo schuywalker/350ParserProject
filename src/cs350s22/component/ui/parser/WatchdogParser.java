@@ -5,5 +5,5 @@ public class WatchdogParser {
 
     // command
 
-    public void watchdogCommand(A_ParserHelper parserHelper, String commandText){}
+    public static void watchdogCommand(A_ParserHelper parserHelper, String[] commandText){}
 }
