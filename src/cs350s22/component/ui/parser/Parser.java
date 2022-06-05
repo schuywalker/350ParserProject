@@ -31,7 +31,6 @@ public class Parser {
                 {
                     // print current time
 
-
                 }
                 else
                 {
@@ -74,6 +73,7 @@ public class Parser {
                 // go to run method and pass rest of split commands
                 break;
             case "configure":
+
                 System.out.println("configure");
                 for (int i = 1; i < splitCommands.length; i++)
                 {
