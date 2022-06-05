@@ -3,6 +3,7 @@ package cs350s22.component.ui.parser;
 import java.util.Locale;
 
 public class SensorParser {
+<<<<<<< Updated upstream
 
     public enum Type {
             SPEED,
@@ -46,6 +47,9 @@ SymbolTable<A_Sensor>.
         this.id = commandText[3];
 
         // parses and executes CREATE SENSOR
+=======
+    public void sensorCommand(A_ParserHelper parserHelper, String commandText){
+>>>>>>> Stashed changes
 
     }
 }
