@@ -3,6 +3,7 @@ package cs350s22.component.ui.parser;
 import java.io.IOException;
 import cs350s22.component.logger.LoggerMessage;
 import cs350s22.component.logger.LoggerMessageSequencing;
+import cs350s22.support.Clock;
 import cs350s22.support.Filespec;
 
 public class Meta {
@@ -42,8 +43,8 @@ public class Meta {
                break;            
          }
       }
-      LoggerMessage.initialize(Filespec.make(log));
-      LoggerMessageSequencing.initialize(Filespec.make(dot), Filespec.make(network));
+//      LoggerMessage.initialize(Filespec.make(log));
+//      LoggerMessageSequencing.initialize(Filespec.make(dot), Filespec.make(network));
     }
     public void clock(String state)
     {
