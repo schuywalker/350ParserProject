@@ -3,10 +3,22 @@ package cs350s22.component.ui.parser;
 import cs350s22.component.sensor.A_Sensor;
 import cs350s22.support.Identifier;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/*
+I'm super confused as to where POSITION/ SPEED goes. seems like it'd be an
+ID but then were does the name go (i.e. mySensor1). Does it just by default have
+an id of sensor, all, position/speed, mySensor1, + watchdog and/or reporter and/or mapper?
+I must be missing something.
+
+-Schuyler
+ */
+
+
 public class SensorParser {
+
 
 
 
@@ -29,22 +41,59 @@ Create a new MySensor object with the arguments provided and add it to
 SymbolTable<A_Sensor>.
        */
 
+        Identifier id = Identifier.make(commandText[3]);
 
-        Identifier id = Identifier.make(commandText[4]);
+//        if (!parserHelper.getSymbolTableSensor().contains(id)){
+//        // before we can add to symbol table, we need to get a Sensor object
+//
+//    }
 
-//        if (commandText.length >= 5 && commandText[4].equals("group")){
-////            List<Identifier> temp = Identifier.makeList(id);
-////            if (parserHelper.getSymbolTableSensor().contains(id)){
-//
-//            // group already exists
-//                A_Sensor sensorTableGroup = parserHelper.getSymbolTableSensor().get(id);
-//                parserHelper.getSymbolTableSensor().add(id, sensorTableGroup);
-////            }
-//
+        List<Identifier> groupBuilder = null;
+        String groupsAsString = null;
+        List<Identifier> finalList = null;
+        // check if these ^^^ are null later for which sensor constructor overload to call below
+
+        if (commandText.length >= 5 && commandText[4].equals("group")) {
+            // make list/ group identifier
+            int i = 4;
+            groupBuilder = new ArrayList<>();
+            while (i < commandText.length && !commandText[i].equals("reporters") && !commandText[i].equals("watchdog") && !commandText[i].equals("mapper")){
+                groupBuilder.add(Identifier.make(commandText[i]));
+                i++;
+            }
+            groupsAsString = Identifier.list(groupBuilder);
+            finalList = Identifier.makeList(groupsAsString);
+
+
+
+            // group gets stored on the component. default GROUP is all. also has a list
+            // groups it belongs to called _groups.
 
         }
 
+        int watchdog = -1;
+        int mapper = -1;
+        int reporter = -1;
+        for (int i = 3; i < commandText.length; i++){
+            if (commandText[i].equals("watchdog")){
+                watchdog = i;
+            }
+            else if (commandText[i].equals("mapper")){
+                mapper = i;
+            }
+            else if (commandText[i].equals("reporter")){
+                reporter = i;
+            }
+        }
 
+        if (watchdog > 0){}
+        if (mapper > 0){}
+        if (reporter > 0){}
+
+
+
+//            A_Sensor newSensor = new A_Sensor()
+//            parserHelper.getSymbolTableSensor().add(id, newSensor);
 
     }
 }
