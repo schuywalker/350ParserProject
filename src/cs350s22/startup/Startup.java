@@ -22,9 +22,10 @@ public class Startup
    {
       Startup startup = new Startup();
 
-      //startup.parse("CREATE ACTUATOR LINEAR myActuator0 ACCELERATION LEADIN 0.1 LEADOUT -0.2 RELAX 0.3 VELOCITY LIMIT 5 VALUE MIN 1 MAX 10 INITIAL 2 JERK LIMIT 3");
+
       // this command must come first. The filenames do not matter here
       startup.parse("@CONFIGURE LOG \"a.txt\" DOT SEQUENCE \"b.txt\" NETWORK \"c.txt\" XML \"d.txt\"");
+      //startup.parse("CREATE ACTUATOR LINEAR myActuator0 ACCELERATION LEADIN 0.1 LEADOUT -0.2 RELAX 0.3 VELOCITY LIMIT 5 VALUE MIN 1 MAX 10 INITIAL 2 JERK LIMIT 3");
 
       // testing - written by schuyler. can be deleted
       startup.parse("BUILD NETWORK WITH COMPONENT[S] id+");
@@ -40,12 +41,6 @@ public class Startup
    private void parse(final String command) throws Exception {
       Parser parser = new Parser(_parserHelper, command);
       String[] splitCommands = command.toLowerCase().split(" ");
-      boolean metaCommand = false;
-      if(splitCommands[0].charAt(0) == '@')
-      {
-         metaCommand = true;
-         splitCommands[0] = splitCommands[0].substring(1).toLowerCase();
-      }
       parser.parse();
 //      // meta commands
 //      switch (splitCommands[0])

@@ -11,6 +11,9 @@ import javax.swing.*;
 
 public class ActuatorParser {
     public static void actuatorCommand(A_ParserHelper parserHelper, String[] commandText) {
+        A_Actuator actuator;
+        Identifier id;
+
         for (int i = 2; i < commandText.length; i++)
         {
             switch(commandText[i])
@@ -56,10 +59,17 @@ public class ActuatorParser {
                     ActuatorRotary rotaryActuator = new ActuatorRotary(rotaryId);
                     break;
                 case "acceleration":
-                    // add acceloration value
-                    break;
-                case "leadout":
-                    // add leadout value
+                    switch (commandText[i + 1])
+                    {
+                        case "leadin":
+                            // add lead in value as i + 2
+                            // add leadout value as i + 4
+                            i += 4;
+                        case "leadout":
+                            // add leadout value as i + 2
+                            // add leadin value as i + 4
+                            i += 4;
+                    }
                     break;
                 case "relax":
                     // add relax value

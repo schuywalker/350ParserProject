@@ -10,8 +10,8 @@ public class Parser {
     String command;
     A_ParserHelper parserHelper;
 
-    public Parser(A_ParserHelper parserHelper, String commandText) {
-        this.command = commandText;
+    public Parser(A_ParserHelper parserHelper, String command) {
+        this.command = command;
         this.parserHelper = parserHelper;
     }
 
@@ -24,10 +24,7 @@ public class Parser {
             metaCommand = true;
             splitCommands[0] = splitCommands[0].substring(1).toLowerCase();
         }
-
-        if (splitCommands[0].contains("@")) {
-            // ParseMeta.parseMetaCommand(parserHelper, command);
-        } else {
+        else {
             String type = splitCommands[1].toUpperCase();
             switch (type) {
                 case "ACTUATOR":
