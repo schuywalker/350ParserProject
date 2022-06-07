@@ -68,11 +68,8 @@ public class ActuatorParser {
                     // add velocity limit
                     break;
                 case "value":
-                    // add value min
-                    break;
-                case "max":
-                    // add max value
-                    break;
+
+                   break;
                 case "initial":
                     // add initial value
                     break;
