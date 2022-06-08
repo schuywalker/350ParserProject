@@ -4,6 +4,7 @@ import cs350s22.component.actuator.A_Actuator;
 
 public class ParserHelper extends A_ParserHelper
 {
+    public SymbolTable symbolTable = new SymbolTable<>();
 
     public ParserHelper()
     {
@@ -11,9 +12,5 @@ public class ParserHelper extends A_ParserHelper
     // check 'this.' to understand how we can use this class
 
     }
-
-
-
-
-
+    
 }

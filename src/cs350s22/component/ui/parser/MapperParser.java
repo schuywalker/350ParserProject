@@ -2,6 +2,7 @@ package cs350s22.component.ui.parser;
 
 import cs350s22.component.sensor.mapper.A_Mapper;
 import cs350s22.component.sensor.mapper.MapperEquation;
+import cs350s22.component.sensor.mapper.MapperInterpolation;
 import cs350s22.component.sensor.mapper.function.equation.A_Equation;
 import cs350s22.component.sensor.mapper.function.equation.EquationNormalized;
 import cs350s22.component.sensor.mapper.function.equation.EquationPassthrough;
@@ -17,7 +18,7 @@ import cs350s22.support.Identifier;
 
 public class MapperParser {
     public static void mapperCommand(A_ParserHelper parserHelper, String[] commandText){
-        A_Mapper mapper;
+        A_Mapper mapper = null;
         Identifier mapperId = Identifier.make(commandText[2]);
         for (int i = 3; i < commandText.length; i++)
         {
@@ -45,7 +46,8 @@ public class MapperParser {
 
                     if (commandText[i + 1] == "linear")
                     {
-                        InterpolatorLinear linear = new InterpolatorLinear(map);
+                        interpolator = new InterpolatorLinear(map);
+
                         i++;
                     }
                     else if (commandText[i+1] == "spline")
@@ -54,13 +56,18 @@ public class MapperParser {
                         InterpolatorSpline spline = new InterpolatorSpline(map);
                         i++;
                     }
+                    mapper = new MapperInterpolation(interpolator);
                     break;
                 case "definition":
                     A_MapLoader loader;
                     Filespec file = new Filespec(commandText[i + 1]);
                     loader = new MapLoader(file);
                     break;
+                default:
+                    throw new RuntimeException("command incorrect");
+
             }
         }
+        parserHelper.getSymbolTableMapper().add(mapperId, mapper);
     }
 }

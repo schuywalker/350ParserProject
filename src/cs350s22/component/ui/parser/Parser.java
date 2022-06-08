@@ -16,7 +16,6 @@ public class Parser {
     }
 
     public void parse() throws IOException {
-
         String[] splitCommands = command.toLowerCase().split(" ");
 
         boolean metaCommand = false;
