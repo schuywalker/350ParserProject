@@ -1,6 +1,10 @@
 package cs350s22.component.ui.parser;
 
+import cs350s22.message.A_Message;
+import cs350s22.message.actuator.MessageActuatorReportPosition;
+import cs350s22.message.actuator.MessageActuatorRequestPosition;
 import cs350s22.message.ping.MessagePing;
+import cs350s22.support.Identifier;
 
 public class MessageParser {
     public static void messageCommand(A_ParserHelper parserHelper, String[] commandText){
@@ -10,9 +14,11 @@ public class MessageParser {
             {
                 case "ping":
                     MessagePing ping = new MessagePing();
+                    parserHelper.getCommandLineInterface().issueMessage(ping);
                     break;
                 case "id":
-                    // add id
+                    Identifier id = Identifier.make(commandText[i + 1]);
+                    i++;
                     break;
                 case "group":
                     // add group
@@ -21,7 +27,7 @@ public class MessageParser {
                     switch (commandText[i+1])
                     {
                         case "request":
-                            // do position request with value
+                            // A_Message message = new MessageActuatorRequestPosition(id, i + 2);
                             break;
                         case "report":
                             // do position report operation

@@ -6,20 +6,30 @@ import cs350s22.component.actuator.ActuatorRotary;
 import cs350s22.component.actuator.state.A_State;
 import cs350s22.component.sensor.A_Sensor;
 import cs350s22.support.Identifier;
+import cs350s22.test.ActuatorPrototype;
 
 import javax.swing.*;
 
 public class ActuatorParser {
     public static void actuatorCommand(A_ParserHelper parserHelper, String[] commandText) {
         A_Actuator actuator;
-        Identifier id;
+        ActuatorPrototype actuatorPrototype;
+        Identifier id = Identifier.make(commandText[3]);
+        double accelerationLeadin = 0.0;
+        double accelerationLeadout = 0.0;
+        double accelerationRelax = 0.0;
+        double velocityLimit = 0.0;
+        double valueInitial = 0.0;
+        double valueMin = 0.0;
+        double valueMax = 0.0;
+        double inflectionJerkThreshold = 0.0;
 
         for (int i = 2; i < commandText.length; i++)
         {
             switch(commandText[i])
             {
+                // actuatorPrototype
                 case "linear":
-                    Identifier linearId = Identifier.make(commandText[3]);
 
                     if (!commandText[4].equals("sensor") && !commandText[4].equals("acceleration"))
                     {
@@ -36,10 +46,9 @@ public class ActuatorParser {
                     {
                         i = 3;
                     }
-                    ActuatorLinear linearActuator = new ActuatorLinear(linearId);
+                    ActuatorLinear linearActuator = new ActuatorLinear(id);
                     break;
                 case "rotary":
-                    Identifier rotaryId = Identifier.make(commandText[3]);
 
                     if (!commandText[4].equals("sensor") && !commandText[4].equals("acceleration"))
                     {
@@ -56,37 +65,50 @@ public class ActuatorParser {
                     {
                         i = 3;
                     }
-                    ActuatorRotary rotaryActuator = new ActuatorRotary(rotaryId);
+                    ActuatorRotary rotaryActuator = new ActuatorRotary(id);
                     break;
                 case "acceleration":
                     switch (commandText[i + 1])
                     {
                         case "leadin":
-                            // add lead in value as i + 2
-                            // add leadout value as i + 4
+                            accelerationLeadin = Double.valueOf(commandText[i + 2]);
+                            accelerationLeadout = Double.valueOf(commandText[i + 4]);
                             i += 4;
                         case "leadout":
-                            // add leadout value as i + 2
-                            // add leadin value as i + 4
+                            accelerationLeadout = Double.valueOf(commandText[i + 2]);
+                            accelerationLeadin = Double.valueOf(commandText[i + 4]);
                             i += 4;
                     }
                     break;
                 case "relax":
-                    // add relax value
+                    accelerationRelax = Double.valueOf(commandText[i + 1]);
                     break;
                 case "velocity":
-                    // add velocity limit
+                    velocityLimit = Double.valueOf(commandText[i + 2]);
                     break;
                 case "value":
-
+                    switch (commandText[i + 1])
+                    {
+                        case "min":
+                            valueMin = Double.valueOf(commandText[i + 2]);
+                            valueMax = Double.valueOf(commandText[i + 4]);
+                            break;
+                        case "max":
+                            valueMax = Double.valueOf(commandText[i + 2]);
+                            valueMin = Double.valueOf(commandText[i + 4]);
+                            break;
+                    }
                    break;
                 case "initial":
-                    // add initial value
+                    valueInitial = Double.valueOf(commandText[i + 1]);
                     break;
                 case "jerk":
-                    // add jerk limit value
+                    inflectionJerkThreshold = Double.valueOf(commandText[i + 2]);
                     break;
             }
+//            actuatorPrototype = new ActuatorPrototype(id, List<Identifier> groups, accelerationLeadin, accelerationLeadout, accelerationRelax, velocityLimit,
+//                    valueInitial, valueMin, valueMax, inflectionJerkThreshold, List<A_Sensor> sensors);
+//            actuator = actuatorPrototype;
         }
     }
 }

@@ -50,7 +50,7 @@ public class MapperParser {
 
                         i++;
                     }
-                    else if (commandText[i+1] == "spline")
+                    else if (commandText[i + 1] == "spline")
                     {
                         map = new InterpolationMap();
                         InterpolatorSpline spline = new InterpolatorSpline(map);
