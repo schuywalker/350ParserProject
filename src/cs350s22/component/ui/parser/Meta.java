@@ -6,12 +6,32 @@ import cs350s22.component.logger.LoggerMessageSequencing;
 import cs350s22.support.Clock;
 import cs350s22.support.Filespec;
 
-public class Meta {
-    public Meta(A_ParserHelper parserHelper, String commandText)
+public class Meta
+{
+    public static void metaCommand(final A_ParserHelper parserHelper, final String [] splitCommands) throws ParseException, IOException
     {
-      
+      switch(splitCommands[0].toUpperCase())
+      {
+         case "CLOCK":
+         {
+            clock(parserHelper, splitCommands);
+         }
+         case "RUN":
+         {
+            String fin = splitCommands[1].replaceAll("\"", "");
+            parserHelper.run(fin);
+         }
+         case "CONFIGURE":
+         {
+            configure(parserHelper, splitCommands);
+         }
+         case "EXIT":
+         {
+            parserHelper.exit();
+         }
+      }
     }
-    public void configure(String [] splitCommands)
+    public static void configure(final A_ParserHelper parserHelper, final String [] splitCommands)throws IOException
     {
       String log="";
       String dot="";
@@ -43,12 +63,30 @@ public class Meta {
                break;            
          }
       }
-//      LoggerMessage.initialize(Filespec.make(log));
-//      LoggerMessageSequencing.initialize(Filespec.make(dot), Filespec.make(network));
+      System.out.println("made it");
+      LoggerMessage.initialize(Filespec.make(log));
+      LoggerMessageSequencing.initialize(Filespec.make(dot), Filespec.make(network));
     }
-    public void clock(String state)
+    public static void clock(final A_ParserHelper parserHelper, final String [] splitCommands)
     {
-         Clock.getInstance().isActive(state.equalsIgnoreCase("resume"));
-    }
-    
+      switch (splitCommands[1].toUpperCase())
+      {
+         case "RESUME":
+         {
+            Clock.getInstance().isActive(true);
+         }
+         case "PAUSE":
+         {
+            Clock.getInstance().isActive(false);
+         }
+         case "ONESTEP":
+         {
+            Clock.getInstance().onestep(Integer.parseInt(splitCommands[2]));
+         }
+         case "SET":
+         {
+            Clock.getInstance().setRate(Integer.parseInt(splitCommands[3]));
+         }
+      }
+    }    
 }

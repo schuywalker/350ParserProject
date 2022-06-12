@@ -15,13 +15,14 @@ public class Parser {
         this.parserHelper = parserHelper;
     }
 
-    public void parse() throws IOException {
+    public void parse() throws IOException, ParseException {
         String[] splitCommands = command.toLowerCase().split(" ");
 
         boolean metaCommand = false;
         if (splitCommands[0].charAt(0) == '@') {
             metaCommand = true;
             splitCommands[0] = splitCommands[0].substring(1).toLowerCase();
+            Meta.metaCommand(parserHelper, splitCommands);
         }
         else {
             String type = splitCommands[1].toUpperCase();
