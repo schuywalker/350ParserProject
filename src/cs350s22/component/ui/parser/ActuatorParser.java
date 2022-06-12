@@ -9,6 +9,8 @@ import cs350s22.support.Identifier;
 import cs350s22.test.ActuatorPrototype;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActuatorParser {
     public static void actuatorCommand(A_ParserHelper parserHelper, String[] commandText) {
@@ -23,7 +25,8 @@ public class ActuatorParser {
         double valueMin = 0.0;
         double valueMax = 0.0;
         double inflectionJerkThreshold = 0.0;
-
+        List<Identifier> groups = new ArrayList<Identifier>();
+        List<Identifier> sensorId = new ArrayList<Identifier>();
         for (int i = 2; i < commandText.length; i++)
         {
             switch(commandText[i])
@@ -31,20 +34,40 @@ public class ActuatorParser {
                 // actuatorPrototype
                 case "linear":
 
-                    if (!commandText[4].equals("sensor") && !commandText[4].equals("acceleration"))
+                    if (!commandText[4].equals("sensors") && !commandText[4].equals("acceleration"))
                     {
-                        // GroupLayout.Group (add group)
-                        //ActuatorLinear linearActuator = new ActuatorLinear(id, commandText[4]); (create linear actuator with group)
-                        i = 4;
+                        groups.add(Identifier.make(commandText[4]));
+                        if (commandText[5].equals("sensors"))
+                        {
+                            int count = 0;
+                            while (!commandText[i].equals("acceleration"))
+                            {
+                                count++;
+                                i++;
+                            }
+                            for (i = 6; i< count+6; i++)
+                            {
+                                sensorId.add(Identifier.make(commandText[i]));
+                            }
+                            i =6;
+                            i = 6;
+
+                        }
                     }
-                    else if (commandText[4] == "sensor")
+                    else if (commandText[4].equals("sensors"))
                     {
-                        // A_Sensor sensor = new A_Sensor(); (creating a sensor)
-                        i = 4;
-                    }
-                    else
-                    {
-                        i = 3;
+                        i = 5;
+                        int count = 0;
+                        while (!commandText[i].equals("acceleration"))
+                        {
+                            count++;
+                            i++;
+                        }
+                        for (i = 5; i< count+5; i++)
+                        {
+                            sensorId.add(Identifier.make(commandText[i]));
+                        }
+                        i = 5;
                     }
                     ActuatorLinear linearActuator = new ActuatorLinear(id);
                     break;
@@ -52,18 +75,37 @@ public class ActuatorParser {
 
                     if (!commandText[4].equals("sensor") && !commandText[4].equals("acceleration"))
                     {
-                        // GroupLayout.Group (add group)
-                        //ActuatorLinear linearActuator = new ActuatorLinear(id, commandText[4]); (create linear actuator with group)
-                        i = 4;
+                        groups.add(Identifier.make(commandText[4]));
+                        if (commandText[5].equals("sensors"))
+                        {
+                            i = 6;
+                            int count = 0;
+                            while (!commandText[i].equals("acceleration"))
+                            {
+                                count++;
+                                i++;
+                            }
+                            for (i = 6; i< count+6; i++)
+                            {
+                                sensorId.add(Identifier.make(commandText[i]));
+                            }
+                            i = 6;
+                        }
                     }
-                    else if (commandText[4] == "sensor")
+                    else if (commandText[4].equals("sensor"))
                     {
-                        // A_Sensor sensor = new A_Sensor(); (creating a sensor)
-                        i = 4;
-                    }
-                    else
-                    {
-                        i = 3;
+                        i = 5;
+                        int count = 0;
+                        while (!commandText[i].equals("acceleration"))
+                        {
+                            count++;
+                            i++;
+                        }
+                        for (i = 5; i< count+5; i++)
+                        {
+                            sensorId.add(Identifier.make(commandText[i]));
+                        }
+                        i = 5;
                     }
                     ActuatorRotary rotaryActuator = new ActuatorRotary(id);
                     break;
@@ -73,11 +115,11 @@ public class ActuatorParser {
                         case "leadin":
                             accelerationLeadin = Double.valueOf(commandText[i + 2]);
                             accelerationLeadout = Double.valueOf(commandText[i + 4]);
-                            i += 4;
+                            break;
                         case "leadout":
                             accelerationLeadout = Double.valueOf(commandText[i + 2]);
                             accelerationLeadin = Double.valueOf(commandText[i + 4]);
-                            i += 4;
+                            break;
                     }
                     break;
                 case "relax":
@@ -106,9 +148,13 @@ public class ActuatorParser {
                     inflectionJerkThreshold = Double.valueOf(commandText[i + 2]);
                     break;
             }
-//            actuatorPrototype = new ActuatorPrototype(id, List<Identifier> groups, accelerationLeadin, accelerationLeadout, accelerationRelax, velocityLimit,
-//                    valueInitial, valueMin, valueMax, inflectionJerkThreshold, List<A_Sensor> sensors);
-//            actuator = actuatorPrototype;
         }
+
+        List<A_Sensor> sensors =  parserHelper.getSymbolTableSensor().get(sensorId);
+        actuatorPrototype = new ActuatorPrototype(id, groups, accelerationLeadin, accelerationLeadout, accelerationRelax, velocityLimit,
+                valueInitial, valueMin, valueMax, inflectionJerkThreshold, sensors);
+        actuator = actuatorPrototype;
+        parserHelper.getSymbolTableActuator().add(id, actuatorPrototype);
+
     }
 }

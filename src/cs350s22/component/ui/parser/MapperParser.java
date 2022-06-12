@@ -63,9 +63,6 @@ public class MapperParser {
                     Filespec file = new Filespec(commandText[i + 1]);
                     loader = new MapLoader(file);
                     break;
-                default:
-                    throw new RuntimeException("command incorrect");
-
             }
         }
         parserHelper.getSymbolTableMapper().add(mapperId, mapper);

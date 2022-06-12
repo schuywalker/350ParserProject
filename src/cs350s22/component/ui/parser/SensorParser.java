@@ -118,7 +118,7 @@ SymbolTable<A_Sensor>.
         A_Sensor sensor = null;
         
         if (watchdogs > 0 && reporters > 0 && groupList == null) {
-            sensor = new A_Sensor(id, reporters, watchdogs);
+            //sensor = new A_Sensor(id, reporters, watchdogs);
         }
 
 
