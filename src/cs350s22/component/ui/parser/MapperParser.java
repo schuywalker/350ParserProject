@@ -16,8 +16,10 @@ import cs350s22.component.sensor.mapper.function.interpolator.loader.MapLoader;
 import cs350s22.support.Filespec;
 import cs350s22.support.Identifier;
 
+import java.io.IOException;
+
 public class MapperParser {
-    public static void mapperCommand(A_ParserHelper parserHelper, String[] commandText){
+    public static void mapperCommand(A_ParserHelper parserHelper, String[] commandText) throws IOException {
         A_Mapper mapper = null;
         Identifier mapperId = Identifier.make(commandText[2]);
         for (int i = 3; i < commandText.length; i++)
@@ -41,27 +43,26 @@ public class MapperParser {
                     mapper = new MapperEquation(equation);
                     break;
                 case "interpolation":
+                    MapLoader loader;
+                    Filespec file = new Filespec(commandText[6].replaceAll("\"", ""));
+                    loader = new MapLoader(file);
                     A_Interpolator interpolator = null;
-                    InterpolationMap map = new InterpolationMap();
+                    InterpolationMap map = loader.load();
 
-                    if (commandText[i + 1] == "linear")
+                    if (commandText[i + 1].equals("linear"))
                     {
                         interpolator = new InterpolatorLinear(map);
-
                         i++;
                     }
-                    else if (commandText[i + 1] == "spline")
+                    else if (commandText[i + 1].equals("spline"))
                     {
-                        map = new InterpolationMap();
-                        InterpolatorSpline spline = new InterpolatorSpline(map);
+                        interpolator = new InterpolatorSpline(map);
                         i++;
                     }
                     mapper = new MapperInterpolation(interpolator);
                     break;
                 case "definition":
-                    A_MapLoader loader;
-                    Filespec file = new Filespec(commandText[i + 1]);
-                    loader = new MapLoader(file);
+
                     break;
             }
         }

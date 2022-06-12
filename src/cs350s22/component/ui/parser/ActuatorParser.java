@@ -40,6 +40,7 @@ public class ActuatorParser {
                         if (commandText[5].equals("sensors"))
                         {
                             int count = 0;
+                            i = 6;
                             while (!commandText[i].equals("acceleration"))
                             {
                                 count++;
@@ -49,7 +50,6 @@ public class ActuatorParser {
                             {
                                 sensorId.add(Identifier.make(commandText[i]));
                             }
-                            i =6;
                             i = 6;
 
                         }
@@ -150,11 +150,12 @@ public class ActuatorParser {
             }
         }
 
-        List<A_Sensor> sensors =  parserHelper.getSymbolTableSensor().get(sensorId);
+
+        List<A_Sensor> sensors =  parserHelper.getSymbolTableSensor().get(sensorId, true);
         actuatorPrototype = new ActuatorPrototype(id, groups, accelerationLeadin, accelerationLeadout, accelerationRelax, velocityLimit,
                 valueInitial, valueMin, valueMax, inflectionJerkThreshold, sensors);
         actuator = actuatorPrototype;
-        parserHelper.getSymbolTableActuator().add(id, actuatorPrototype);
+        parserHelper.getSymbolTableActuator().add(id,actuator);
 
     }
 }
