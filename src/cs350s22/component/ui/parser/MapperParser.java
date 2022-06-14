@@ -61,9 +61,6 @@ public class MapperParser {
                     }
                     mapper = new MapperInterpolation(interpolator);
                     break;
-                case "definition":
-
-                    break;
             }
         }
         parserHelper.getSymbolTableMapper().add(mapperId, mapper);

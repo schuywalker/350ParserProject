@@ -1,6 +1,8 @@
 package cs350s22.component.ui.parser;
 
 import java.util.*;
+
+import cs350s22.network.Network;
 import cs350s22.support.Identifier;
 import cs350s22.component.controller.*;
 import cs350s22.component.actuator.*;
@@ -27,5 +29,7 @@ public class NetworkParser
       masterController.addComponents(actuators);
       masterController.addComponents(sensors);
       masterController.addComponents(controllers);
+      Network net = parserHelper.getNetwork();
+      net.writeOutput();
     }
 }

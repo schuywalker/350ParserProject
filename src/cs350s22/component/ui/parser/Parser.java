@@ -49,7 +49,7 @@ public class Parser {
                     ReporterParser.reporterCommand(parserHelper,splitCommands);
                     break;
 //                case "SENSOR":
-//                    SensorParser.sensorCommand(parserHelper,splitCommands);
+//                    SensorParser.sensorCommand(parserHelper,spligtCommands);
 //                    break;
                 case "WATCHDOG":
                     WatchdogParser.watchdogCommand(parserHelper,splitCommands);
