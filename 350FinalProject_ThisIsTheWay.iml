@@ -7,10 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/cs350-project-v0_3.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/cs350-project-v0_5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
