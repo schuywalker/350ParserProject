@@ -15,16 +15,22 @@ public class Meta
          case "CLOCK":
          {
             clock(parserHelper, splitCommands);
+            
          }
+         break;
          case "RUN":
          {
             String fin = splitCommands[1].replaceAll("\"", "");
             parserHelper.run(fin);
+            
          }
+         break;
          case "CONFIGURE":
          {
             configure(parserHelper, splitCommands);
+            
          }
+         break;
          case "EXIT":
          {
             parserHelper.exit();
@@ -62,8 +68,7 @@ public class Meta
                xml = splitCommands[i].replaceAll("\"", "");
                break;            
          }
-      }
-      System.out.println("made it");
+      }      
       LoggerMessage.initialize(Filespec.make(log));
       LoggerMessageSequencing.initialize(Filespec.make(dot), Filespec.make(network));
     }
@@ -74,19 +79,27 @@ public class Meta
          case "RESUME":
          {
             Clock.getInstance().isActive(true);
+            
          }
+         break;
          case "PAUSE":
          {
             Clock.getInstance().isActive(false);
+            
          }
+         break;
          case "ONESTEP":
          {
             Clock.getInstance().onestep(Integer.parseInt(splitCommands[2]));
+            
          }
+         break;
          case "SET":
          {
             Clock.getInstance().setRate(Integer.parseInt(splitCommands[3]));
+            
          }
+         break;
       }
     }    
 }
