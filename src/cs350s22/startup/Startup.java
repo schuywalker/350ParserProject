@@ -65,10 +65,10 @@ public class Startup
       // startup.parse("BUILD NETWORK WITH COMPONENT myController");
       startup.parse("BUILD NETWORK WITH COMPONENTS myController myActuator0 myActuator1 mySensor16");
 
-<<<<<<< HEAD
-//      startup.parse("SET SENSOR mySensor8 VALUE 35");
-//      startup.parse("GET SENSOR mySensor8 VALUE");
-=======
+
+      startup.parse("SET SENSOR mySensor8 VALUE 35");
+      startup.parse("GET SENSOR mySensor8 VALUE");
+
       //startup.parse("SET SENSOR mySensor8 VALUE 35");
 
       /*
@@ -91,7 +91,6 @@ public class Startup
 */
 
       //startup.parse("GET SENSOR mySensor8 VALUE");
->>>>>>> b86c8735f057c372289a450b51f771b779401e68
 
       // Message Commands
       // startup.parse("SEND MESSAGE PING");
