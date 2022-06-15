@@ -65,6 +65,25 @@ public class Startup
 
       //startup.parse("SET SENSOR mySensor8 VALUE 35");
 
+      /*
+      startup.parse( "CREATE SENSOR POSITION mySensor1");
+      startup.parse( "CREATE SENSOR POSITION mySensor2 GROUP myGroup1");
+      startup.parse("CREATE SENSOR POSITION mySensor3 GROUP myGroup1 myGroup2");
+      startup.parse( "CREATE SENSOR POSITION mySensor4 MAPPER myMapper1");
+      startup.parse( "CREATE SENSOR POSITION mySensor5 GROUP myGroup1 REPORTERS myReporter1");
+      startup.parse( "CREATE SENSOR POSITION mySensor6 GROUP myGroup1 REPORTERS myReporter1");
+      startup.parse( "CREATE SENSOR POSITION mySensor7 GROUP myGroup1 myGroup2 REPORTERS myReporter1");
+      startup.parse( "CREATE SENSOR POSITION mySensor8 GROUP myGroup1 REPORTERS myReporter1 MAPPER myMapper1");
+      startup.parse( "CREATE SENSOR POSITION mySensor9 GROUP myGroup1 WATCHDOG myWatchdog1");
+      startup.parse( "CREATE SENSOR POSITION mySensor10 GROUP myGroup1 WATCHDOG myWatchdog1");
+      startup.parse( "CREATE SENSOR POSITION mySensor11 GROUP myGroup1 myGroup2 WATCHDOGS myWatchdog1");
+      startup.parse( "CREATE SENSOR POSITION mySensor12 GROUP myGroup1 WATCHDOGS myWatchdog1 myWatchdog2 MAPPER myMapper1");
+      startup.parse( "CREATE SENSOR POSITION mySensor13 GROUP myGroup1 REPORTERS myReporter1 WATCHDOG myWatchdog1");
+      startup.parse( "CREATE SENSOR POSITION mySensor14 GROUP myGroup1 REPORTERS myReporter1 WATCHDOG myWatchdog1");
+      startup.parse( "CREATE SENSOR POSITION mySensor15 GROUP myGroup1 myGroup2 REPORTERS myReporter1 WATCHDOGS myWatchdog1");
+      startup.parse( "CREATE SENSOR POSITION mySensor16 GROUP myGroup1 REPORTERS myReporter1 WATCHDOGS myWatchdog1 myWatchdog2 MAPPER myMapper1");
+*/
+
       //startup.parse("GET SENSOR mySensor8 VALUE");
 
       // Message Commands

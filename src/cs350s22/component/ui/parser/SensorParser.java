@@ -30,6 +30,16 @@ public class SensorParser {
 
         Identifier id = Identifier.make(commandText[3]);
 
+        if (commandText[0].equals("set")){
+            A_Sensor s = parserHelper.getSymbolTableSensor().get(Identifier.make(commandText[2]));
+            double value = Double.parseDouble((commandText[4]));
+            s.setValue(value);
+        }
+        else if (commandText[0].equals("get")){
+            A_Sensor s = parserHelper.getSymbolTableSensor().get(Identifier.make(commandText[2]));
+            System.out.println(s.getValue());
+        }
+
         List<Identifier> groupBuilder = null;
         String groupsAsString = null;
         List<Identifier> groupList = null;
@@ -50,7 +60,6 @@ public class SensorParser {
         int reporter = -1;
         List<Identifier> watchdogList = null;
         List <Identifier> reporterList = null;
-//        List<Identifier> mapperList = null;
         Identifier mapperID = null;
         A_Mapper mapper3 = null;
         A_Mapper mapper4 = null;
@@ -140,4 +149,6 @@ public class SensorParser {
         parserHelper.getSymbolTableSensor().add(id, sensor);
 
     }
+
+
 }
