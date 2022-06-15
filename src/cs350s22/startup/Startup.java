@@ -25,6 +25,8 @@ public class Startup
 // this command must come first. The filenames do not matter here
       startup.parse("@CONFIGURE LOG \"a.txt\" DOT SEQUENCE \"b.txt\" NETWORK \"c.txt\" XML \"d.txt\"");
 
+
+
       // run your tests like this
 
       // PART 1 TESTS
@@ -63,9 +65,8 @@ public class Startup
       // startup.parse("BUILD NETWORK WITH COMPONENT myController");
       startup.parse("BUILD NETWORK WITH COMPONENTS myController myActuator0 myActuator1 mySensor16");
 
-      //startup.parse("SET SENSOR mySensor8 VALUE 35");
-
-      //startup.parse("GET SENSOR mySensor8 VALUE");
+//      startup.parse("SET SENSOR mySensor8 VALUE 35");
+//      startup.parse("GET SENSOR mySensor8 VALUE");
 
       // Message Commands
       // startup.parse("SEND MESSAGE PING");
