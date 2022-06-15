@@ -1,6 +1,7 @@
 package cs350s22.component.ui.parser;
 
 import cs350s22.component.A_Component;
+import cs350s22.component.controller.A_Controller;
 import cs350s22.component.sensor.A_Sensor;
 import cs350s22.component.sensor.mapper.A_Mapper;
 import cs350s22.component.sensor.reporter.A_Reporter;
@@ -30,14 +31,22 @@ public class SensorParser {
 
         Identifier id = Identifier.make(commandText[3]);
 
-        if (commandText[0].equals("set")){
+        if (commandText[0].equalsIgnoreCase("set")){
             A_Sensor s = parserHelper.getSymbolTableSensor().get(Identifier.make(commandText[2]));
             double value = Double.parseDouble((commandText[4]));
+//            parserHelper.getSymbolTableController().get(id);
+//            if (parserHelper.getSymbolTableController().contains(Identifier.make(commandText[2]))){
+//
+//            }
+            s.registerController(parserHelper.getNetwork().getMasterController());
             s.setValue(value);
+            return;
         }
-        else if (commandText[0].equals("get")){
+        else if (commandText[0].equalsIgnoreCase("get")){
             A_Sensor s = parserHelper.getSymbolTableSensor().get(Identifier.make(commandText[2]));
             System.out.println(s.getValue());
+
+            return;
         }
 
         List<Identifier> groupBuilder = null;
