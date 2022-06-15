@@ -19,7 +19,6 @@ public class NetworkParser
       SymbolTable <A_Actuator> actuatorSymbolTable = parserHelper.getSymbolTableActuator();
       SymbolTable <A_Sensor> sensorSymbolTable = parserHelper.getSymbolTableSensor();
       SymbolTable <A_Controller> controllerSymbolTable = parserHelper.getSymbolTableController();
-      System.out.println(ids[0]);
       actuators = actuatorSymbolTable.get(idList, true);
       sensors = sensorSymbolTable.get(idList, true);
       controllers = controllerSymbolTable.get(idList, true);

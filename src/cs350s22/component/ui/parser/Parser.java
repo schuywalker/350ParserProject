@@ -48,9 +48,9 @@ public class Parser {
                 case "REPORTER":
                     ReporterParser.reporterCommand(parserHelper,splitCommands);
                     break;
-//                case "SENSOR":
-//                    SensorParser.sensorCommand(parserHelper,spligtCommands);
-//                    break;
+                case "SENSOR":
+                    SensorParser.sensorCommand(parserHelper, splitCommands);
+                    break;
                 case "WATCHDOG":
                     WatchdogParser.watchdogCommand(parserHelper,splitCommands);
                     break;

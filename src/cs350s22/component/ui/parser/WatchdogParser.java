@@ -70,54 +70,53 @@ public class WatchdogParser {
                     failureThreshold = Integer.valueOf(commandText[i + 1]);
                     break;
             }
+        }
+        switch (commandText[2])
+        {
+            case "acceleration":
+                if(hasGrace) {
+                    watchdog = new WatchdogAcceleration(thresholdLow, thresholdHigh, watchdogMode, failureThreshold);
+                }
+                else {
+                    watchdog = new WatchdogAcceleration(thresholdLow,thresholdHigh, watchdogMode);
+                }
+                break;
 
-            switch (commandText[2])
-            {
-                case "acceleration":
-                    if(hasGrace) {
-                        watchdog = new WatchdogAcceleration(thresholdLow, thresholdHigh, watchdogMode, failureThreshold);
-                    }
-                    else {
-                        watchdog = new WatchdogAcceleration(thresholdLow,thresholdHigh, watchdogMode);
-                    }
-                    break;
+            case "band":
+                if(hasGrace) {
+                    watchdog = new WatchdogBand(thresholdLow, thresholdHigh, watchdogMode, failureThreshold);
+                }
+                else {
+                    watchdog = new WatchdogBand(thresholdLow,thresholdHigh, watchdogMode);
+                }
+                break;
 
-                case "band":
-                    if(hasGrace) {
-                        watchdog = new WatchdogBand(thresholdLow, thresholdHigh, watchdogMode, failureThreshold);
-                    }
-                    else {
-                        watchdog = new WatchdogBand(thresholdLow,thresholdHigh, watchdogMode);
-                    }
-                    break;
+            case "notch":
+                if(hasGrace) {
+                    watchdog = new WatchdogNotch(thresholdLow, thresholdHigh, watchdogMode, failureThreshold);
+                }
+                else {
+                    watchdog = new WatchdogNotch(thresholdLow,thresholdHigh, watchdogMode);
+                }
+                break;
 
-                case "notch":
-                    if(hasGrace) {
-                        watchdog = new WatchdogNotch(thresholdLow, thresholdHigh, watchdogMode, failureThreshold);
-                    }
-                    else {
-                        watchdog = new WatchdogNotch(thresholdLow,thresholdHigh, watchdogMode);
-                    }
-                    break;
+            case "low":
+                if(hasGrace) {
+                    watchdog = new WatchdogLow(threshold, watchdogMode, failureThreshold);
+                }
+                else {
+                    watchdog = new WatchdogLow(threshold, watchdogMode);
+                }
+                break;
 
-                case "low":
-                    if(hasGrace) {
-                        watchdog = new WatchdogLow(threshold, watchdogMode, failureThreshold);
-                    }
-                    else {
-                        watchdog = new WatchdogLow(threshold, watchdogMode);
-                    }
-                    break;
-
-                case "high":
-                    if(hasGrace) {
-                        watchdog = new WatchdogHigh(threshold, watchdogMode, failureThreshold);
-                    }
-                    else {
-                        watchdog = new WatchdogHigh(threshold, watchdogMode);
-                    }
-                    break;
-            }
+            case "high":
+                if(hasGrace) {
+                    watchdog = new WatchdogHigh(threshold, watchdogMode, failureThreshold);
+                }
+                else {
+                    watchdog = new WatchdogHigh(threshold, watchdogMode);
+                }
+                break;
         }
         parserHelper.getSymbolTableWatchdog().add(watchdogId, watchdog);
     }

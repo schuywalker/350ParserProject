@@ -71,19 +71,19 @@ public class MessageParser {
                             CommandLineInterface cli2 = parserHelper.getCommandLineInterface();
                             if (hasId == true && hasGroup == true)
                             {
-                                A_Message message1 = new MessageActuatorReportPosition(groups, Integer.valueOf(commandText[i+2]));
-                                A_Message message2 = new MessageActuatorReportPosition(ids, Integer.valueOf(commandText[i+2]));
+                                A_Message message1 = new MessageActuatorReportPosition(groups);
+                                A_Message message2 = new MessageActuatorReportPosition(ids);
                                 cli2.issueMessage(message1);
                                 cli2.issueMessage(message2);
                             }
                             else if (hasId == true && hasGroup == false)
                             {
-                                A_Message message1 = new MessageActuatorReportPosition(ids, Integer.valueOf(commandText[i+2]));
+                                A_Message message1 = new MessageActuatorReportPosition(ids);
                                 cli2.issueMessage(message1);
                             }
                             else if (hasId == false && hasGroup == true)
                             {
-                                A_Message message1 = new MessageActuatorReportPosition(groups, Integer.valueOf(commandText[i+2]));
+                                A_Message message1 = new MessageActuatorReportPosition(groups);
                                 cli2.issueMessage(message1);
                             }
                             break;
