@@ -56,7 +56,7 @@ public class SensorParser {
         if (commandText.length >= 5 && commandText[4].equals("group")) {
             int i = 4;
             groupBuilder = new ArrayList<>();
-            while (i < commandText.length && !commandText[i+1].equals("reporters") && !commandText[i+1].equals("watchdogs") && !commandText[i+1].equals("mapper")){
+            while (i < commandText.length-1 && !commandText[i+1].equals("reporters") && !commandText[i+1].equals("watchdogs") && !commandText[i+1].equals("mapper")){
                 i++;
                 groupBuilder.add(Identifier.make(commandText[i]));
             }
