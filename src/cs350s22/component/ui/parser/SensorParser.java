@@ -44,7 +44,7 @@ public class SensorParser {
         }
         else if (commandText[0].equalsIgnoreCase("get")){
             A_Sensor s = parserHelper.getSymbolTableSensor().get(Identifier.make(commandText[2]));
-            System.out.println("sensor values"+ s.getValue());
+            System.out.println("sensor values "+ s.getValue());
 
             return;
         }
