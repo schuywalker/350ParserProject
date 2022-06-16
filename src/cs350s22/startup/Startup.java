@@ -119,7 +119,7 @@ public class Startup
       startup.parse("CREATE DEPENDENCY SEQUENCE myDependencySequence2 EXPRESSION ( myMessage1 AND myMessage2 )");
       startup.parse("CREATE DEPENDENCY SEQUENCE myDependencySequence3 EXPRESSION ( myMessage1 OR myMessage2 )");
       startup.parse("CREATE DEPENDENCY SEQUENCE myDependencySequence4 EXPRESSION ( (myMessage1 AND myMessage2) OR (myMessage3 AND (myMessage4 OR myMessage5)) )");
-      startup.parse("// dependency sequencer");
+//      startup.parse("// dependency sequencer");
       startup.parse("CREATE DEPENDENCY SEQUENCER myDependencySequencer1 SEQUENCE myDependencySequence1");
       startup.parse("CREATE DEPENDENCY SEQUENCER myDependencySequencer2 SEQUENCES myDependencySequence2 myDependencySequence3");
 //      startup.parse("// send message");
